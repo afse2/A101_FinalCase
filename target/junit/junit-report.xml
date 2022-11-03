@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="36.726">
+    <testcase classname="As a user, I should be able to add items to chart with login and without login" name="User can add item to cart without login" time="36.483">
+        <system-out>
+            <![CDATA[Given user navigate home page...............................................passed
+When user does not login to the page........................................passed
+And user enter "Parfum" the name of the item they wish to buy in the search box.passed
+And user select 50 th item on the page......................................passed
+And user add two item from 1 seller and 2 seller to cart....................passed
+Then user display correct item on the Sepetim page..........................passed
+]]>
+        </system-out>
+    </testcase>
+</testsuite>
