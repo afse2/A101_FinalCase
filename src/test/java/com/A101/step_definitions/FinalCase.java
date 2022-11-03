@@ -67,6 +67,8 @@ public class FinalCase {
 
     @When("user add two item from {int} seller and {int} seller to cart")
     public void user_add_two_item_from_different_seller_to_cart(int firstSeller, int secondSeller) {
+
+       //If item has not more than 1 sellers, test fail
         if(Integer.parseInt(page.sellersCount.getText())<=1){
             log.warn("There are no more than 1 seller for this item. Pls select another one." + page.sellersCount);
         }
@@ -75,6 +77,7 @@ public class FinalCase {
         page.sellers.click();
         log.info("Sellers displayed");
 
+        //if selected sellers number more than item's sellers, test fail
         if(page.addToBasketButtons.size()>=firstSeller && page.addToBasketButtons.size()>=secondSeller){
             page.addToBasketButtons.get(firstSeller-1).click();
 

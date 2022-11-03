@@ -77,6 +77,15 @@ public class FinalCasePage extends BasePage {
     @FindBy(xpath = "//span[@title=\"Giriş Yap\"]")
     public WebElement signIn;
 
+
+    /**
+     * Scrolls down to selected item using JavaScript
+     *
+     * @param numberOfItem
+     * @return WebElement which to selected
+     */
+
+
     public WebElement selectItem(int numberOfItem) {
         int itemIndex = numberOfItem - 1;
 
