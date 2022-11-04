@@ -12,11 +12,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class FinalCase {
+public class FinalCase_StepDefinition {
+
 
 
     FinalCasePage page = new FinalCasePage();
-    WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 20);
     Log log = new Log();
 
     @Given("user navigate home page")
@@ -28,6 +29,7 @@ public class FinalCase {
         log.info("Cookies accepted");
 
     }
+
     @When("user enter mail and password in login page and display they profile name {string} on homepage")
     public void user_login_page(String profileName) {
         BrowserUtils.hover(page.profileDropBox);
@@ -45,6 +47,7 @@ public class FinalCase {
         log.info("Profile name confirmed");
 
     }
+
     @When("user enter {string} the name of the item they wish to buy in the search box")
     public void user_enter_the_name_of_the_item_they_wish_to_buy_in_the_search_box(String itemName) {
 
@@ -55,6 +58,7 @@ public class FinalCase {
     }
 
     String itemName;
+
     @When("user select {int} th item on the page")
     public void user_select_one_item_on_the_page(int itemNumber) {
 
@@ -68,24 +72,26 @@ public class FinalCase {
     @When("user add two item from {int} seller and {int} seller to cart")
     public void user_add_two_item_from_different_seller_to_cart(int firstSeller, int secondSeller) {
 
-       //If item has not more than 1 sellers, test fail
-        if(Integer.parseInt(page.sellersCount.getText())<=1){
-            log.warn("There are no more than 1 seller for this item. Pls select another one." + page.sellersCount);
-        }
-        Assert.assertTrue(Integer.parseInt(page.sellersCount.getText())>1);
+        //If item has not more than 1 sellers, test fail
+
+
+        Assert.assertFalse("There are no more than 1 seller for this item. Pls select another one." + page.sellersCount, page.sellersCount.getText().isEmpty());
+
         BrowserUtils.scrollToElement(page.sellers);
+
         page.sellers.click();
+
         log.info("Sellers displayed");
 
         //if selected sellers number more than item's sellers, test fail
-        if(page.addToBasketButtons.size()>=firstSeller && page.addToBasketButtons.size()>=secondSeller){
-            page.addToBasketButtons.get(firstSeller-1).click();
+        if (page.addToBasketButtons.size() >= firstSeller && page.addToBasketButtons.size() >= secondSeller) {
+            page.addToBasketButtons.get(firstSeller - 1).click();
 
             page.xButton.click();
-            page.addToBasketButtons.get(secondSeller-1).click();
-        }else{
+            page.addToBasketButtons.get(secondSeller - 1).click();
+        } else {
             log.error("There are not as many sellers as the number of sellers entered.");
-            Assert.assertTrue(page.addToBasketButtons.size()>=firstSeller && page.addToBasketButtons.size()>=secondSeller);
+            Assert.assertTrue(page.addToBasketButtons.size() >= firstSeller && page.addToBasketButtons.size() >= secondSeller);
         }
 
 
@@ -98,15 +104,15 @@ public class FinalCase {
 
         Assert.assertTrue(page.itemNames.get(0).getText().contains(itemName));
         Assert.assertTrue(page.itemNames.get(1).getText().contains(itemName));
-        Assert.assertTrue(Integer.parseInt(page.itemCount.getText())>1);
-        Assert.assertNotEquals(page.sellersNames.get(0).getText(),page.sellersNames.get(1).getText());
+        Assert.assertTrue(Integer.parseInt(page.itemCount.getText()) > 1);
+        Assert.assertNotEquals(page.sellersNames.get(0).getText(), page.sellersNames.get(1).getText());
         log.info("Confirmed that two item from two diffrent sellers have been added to the cart");
     }
 
     @When("user does not login to the page")
     public void userDoesNotLoginToThePage() {
 
-        Assert.assertEquals("Giriş Yap",page.signIn.getText());
+        Assert.assertEquals("Giriş Yap", page.signIn.getText());
         log.info("Confirmed that no sign in");
 
 
