@@ -20,3 +20,7 @@ Scenario 2 : User can add item to cart without login
 
 ### Enviroment for Web Automation    : Chrome Browser Version 106.0.5249.91 (64-bit)
 
+
+
+https://user-images.githubusercontent.com/92935802/200004578-cb8f770c-98fa-4d44-a648-7c03d305d596.mp4
+
